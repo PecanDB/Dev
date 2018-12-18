@@ -4,55 +4,11 @@
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Microsoft.WindowsAzure.Storage;
     using Microsoft.WindowsAzure.Storage.Table;
     using PecanDb.Storage.StorageSystems;
 
-    [TestClass]
-    public class UnitTest1
-    {
-        [TestMethod]
-        public void TestMethod1()
-        {
-            var store = new PecanDocumentStore(
-                "PecanDBTest",
-                new DatabaseOptions(true)
-                {
-                    StorageIO = new AzureTablesStorageIO(),
-                    EnableFasterCachingButWithLeakyUpdates = false,
-                    DontWaitForWrites = true,
-                    EnableCaching = false
-                });
-
-            try
-            {
-                using (ISession session = store.OpenSession())
-                {
-                    var data = session.Load<TestClass>("boo2");
-                }
-            }
-            catch (Exception e)
-            {
-            }
-
-            using (ISession session = store.OpenSession())
-            {
-                string id = session.Save(
-                    new TestClass
-                        { Name = "yoyoyo" },
-                    "boo2");
-                session.SaveChanges();
-            }
-        }
-    }
-
-    public class TestClass
-    {
-        public string Name { set; get; }
-    }
-
-    public class AzureTablesStorageIO : IStorageIO
+    public class AzureTablesStorageIo : IStorageIO
     {
         public IEnumerable<string> DirectoryEnumerateFiles(string name)
         {
@@ -139,14 +95,11 @@
 
         public IPecanLogger Logger { get; set; }
 
-        static CloudTable GetCloudTable()
+        private static CloudTable GetCloudTable()
         {
             // Retrieve the storage account from the connection string.
-           
+
             CloudStorageAccount storageAccount = CloudStorageAccount.Parse("xxxxxxxxxxx");
-              
-            CloudStorageAccount storageAccount = CloudStorageAccount.Parse("DefaultEndpointsProtocol=https;AccountName=mobilevideostorage;AccountKey=EM7KpcZ2Dujus/B9yx0FQzoYw7WVLZY/hbJKL/bW3cRO32bTku76Zihxk+CZZKMgJ1RHGfMwPGkYAxPXBI0moQ==;EndpointSuffix=core.windows.net");
-              
 
             // Create the table client.
             CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
@@ -157,20 +110,5 @@
             table.CreateIfNotExists();
             return table;
         }
-    }
-
-    public class CustomerEntity : TableEntity
-    {
-        public CustomerEntity(string partitionKey, string rowKey)
-        {
-            this.PartitionKey = partitionKey;
-            this.RowKey = rowKey;
-        }
-
-        public CustomerEntity()
-        {
-        }
-
-        public string Json { get; set; }
     }
 }
