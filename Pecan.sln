@@ -15,6 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PecanDB.Logger", "PecanDB.L
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PecanDB.Logger.NLog", "PecanDB.Logger.NLog\PecanDB.Logger.NLog.csproj", "{FB328B39-95C1-4F12-9EDA-20B9FCD5EFCA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PecanDB.AzureTableStorage.Tests", "PecanDB.AzureTableStorage.Tests\PecanDB.AzureTableStorage.Tests.csproj", "{E58C2306-9D3F-47B0-946F-5C3DE9E727E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PecanDB.AzureTableStorage", "PecanDB.AzureTableStorage\PecanDB.AzureTableStorage.csproj", "{42EBE944-6E70-48DE-9DCB-F3E26385B2C7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +75,22 @@ Global
 		{FB328B39-95C1-4F12-9EDA-20B9FCD5EFCA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FB328B39-95C1-4F12-9EDA-20B9FCD5EFCA}.Release|x86.ActiveCfg = Release|Any CPU
 		{FB328B39-95C1-4F12-9EDA-20B9FCD5EFCA}.Release|x86.Build.0 = Release|Any CPU
+		{E58C2306-9D3F-47B0-946F-5C3DE9E727E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E58C2306-9D3F-47B0-946F-5C3DE9E727E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E58C2306-9D3F-47B0-946F-5C3DE9E727E9}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E58C2306-9D3F-47B0-946F-5C3DE9E727E9}.Debug|x86.Build.0 = Debug|Any CPU
+		{E58C2306-9D3F-47B0-946F-5C3DE9E727E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E58C2306-9D3F-47B0-946F-5C3DE9E727E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E58C2306-9D3F-47B0-946F-5C3DE9E727E9}.Release|x86.ActiveCfg = Release|Any CPU
+		{E58C2306-9D3F-47B0-946F-5C3DE9E727E9}.Release|x86.Build.0 = Release|Any CPU
+		{42EBE944-6E70-48DE-9DCB-F3E26385B2C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42EBE944-6E70-48DE-9DCB-F3E26385B2C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42EBE944-6E70-48DE-9DCB-F3E26385B2C7}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{42EBE944-6E70-48DE-9DCB-F3E26385B2C7}.Debug|x86.Build.0 = Debug|Any CPU
+		{42EBE944-6E70-48DE-9DCB-F3E26385B2C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42EBE944-6E70-48DE-9DCB-F3E26385B2C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42EBE944-6E70-48DE-9DCB-F3E26385B2C7}.Release|x86.ActiveCfg = Release|Any CPU
+		{42EBE944-6E70-48DE-9DCB-F3E26385B2C7}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
