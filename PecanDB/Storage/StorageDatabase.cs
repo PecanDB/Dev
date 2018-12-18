@@ -1,19 +1,19 @@
 namespace PecanDb.Storage
 {
-    using PecanDB;
     using System;
     using System.Collections.Generic;
     using System.Threading;
+    using PecanDB;
 
     public class StorageDatabase<TDocumentWithObject, TObjectOnly> : IDisposable
         where TDocumentWithObject : IStandardDocument<TObjectOnly>
     {
-        private static readonly object CurrentCountLock = new object();
-        private static long CurrentCount;
-        private readonly IPecanLogger Logger;
-        private readonly IStorageMechanism storageMechanism;
+        static readonly object CurrentCountLock = new object();
+        static long CurrentCount;
+        readonly IPecanLogger Logger;
+        readonly IStorageMechanism storageMechanism;
 
-        private string DocumentName { get; }
+        string DocumentName { get; }
 
         public bool InitializeDatabaseCacheIfNotReady()
         {
@@ -40,9 +40,11 @@ namespace PecanDb.Storage
                     this.Logger?.Trace(this.GetType().Name, $"Error while waiting for creation id {result.Id}. Document Name {this.DocumentName}");
                     throw new Exception($"waitForCreation : Could not confirm creation of {result.Id}");
                 }
+
                 this.Logger?.Trace(this.GetType().Name, $"Created document {result.Id}. Document Name {this.DocumentName}");
                 result = this.Load(result.Id, true);
             }
+
             return result;
         }
 
@@ -156,6 +158,7 @@ namespace PecanDb.Storage
             if (original.Id == null)
             {
             }
+
             this.Update(original);
 
             if (waitForDeletion)
@@ -214,7 +217,7 @@ namespace PecanDb.Storage
 
         #region INTERNALS
 
-        private TDocumentWithObject UpdateWithoutFlushAndHistory<TObjectOnly>(TDocumentWithObject dbObject, bool createIfNoId = false, string id = null, string etag = null)
+        TDocumentWithObject UpdateWithoutFlushAndHistory<TObjectOnly>(TDocumentWithObject dbObject, bool createIfNoId = false, string id = null, string etag = null)
         {
             this.Logger?.Trace(this.GetType().Name, $"Update without flush and history document {dbObject?.Id} at position {dbObject?.Position} with etag supplied {etag} . Document Name {this.DocumentName}");
 
@@ -248,7 +251,7 @@ namespace PecanDb.Storage
             return result;
         }
 
-        private TDocumentWithObject CreateAndFlush(TDocumentWithObject dbObject, string id = null)
+        TDocumentWithObject CreateAndFlush(TDocumentWithObject dbObject, string id = null)
         {
             this.Logger?.Trace(this.GetType().Name, $"Create and flush document id {id} and id in document is {dbObject?.Id} at position {dbObject?.Position}. Document Name {this.DocumentName}");
 
@@ -302,13 +305,13 @@ namespace PecanDb.Storage
 
         #region CONORS
 
-        private readonly DatabaseService DataBaseSettings;
+        readonly DatabaseService DataBaseSettings;
 
         public StorageDatabase(IStorageMechanism storageMechanism, string documentName, DatabaseService dataBaseSettings, IPecanLogger logger)
         {
             this.Logger = logger;
 
-            this.Logger?.Trace(this.GetType().Name, $"Initializing storage database ...");
+            this.Logger?.Trace(this.GetType().Name, "Initializing storage database ...");
 
             this.DataBaseSettings = dataBaseSettings;
             this.storageMechanism = storageMechanism;
