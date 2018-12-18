@@ -1,6 +1,8 @@
 namespace PecanDB.Tests
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using PecanDb.Storage.StorageSystems;
+    using PecanDB.Logger;
 
     [TestClass]
     public class server_client_db_test
