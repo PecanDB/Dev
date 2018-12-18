@@ -168,6 +168,11 @@ namespace PecanDb.Storage.StorageSystems
                 this.FileSystem.CreateDirectory(folder);
 
             this.Logger?.Trace(this.GetType().Name, $"Got DB Folder as {folder} with document name {documentName} {this.GetType().Name} {this.GetContextDescription()}");
+            
+           //todo need to fix.this fixes used of external storage
+            //without this, enabling caching breaks
+            //with this, local file system breaks
+            // folder=Path.GetFileNameWithoutExtension(folder);
 
             return folder;
         }

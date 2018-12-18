@@ -49,6 +49,7 @@ namespace PecanDb.Storage
         }
 
         public IStorageIO FileIo { get; set; }
+       // public bool UseFolderName { get; set; }
 
         public IStorageMechanism StorageMechanismMech { set; get; }
 
@@ -70,5 +71,7 @@ namespace PecanDb.Storage
         public bool DontWaitForWrites { get; set; }
 
         public bool DontWaitForWritesOnCreate { get; set; }
+
+        public bool UseFolderNameForCaching { get; set; }
     }
 }
